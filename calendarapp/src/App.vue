@@ -4,7 +4,21 @@
       <b-tab title="Week" active>
         <b-tabs content-class="mt-3">
           <b-tab title="Helipad One">
- 
+            <FullCalendar
+            class='demo-app-calendar'
+            ref="fullCalendar"
+            defaultView="timeGridWeek"
+            :header="{
+              left: 'prev,next, today',
+              center: 'title',
+              right: 'timeGridWeek'
+            }"
+            :customButtons="{}"
+            :plugins="calendarPlugins"
+            :events="calendarEvents"
+            :editable="true"
+            @dateClick="handleDateClick"
+            />
           </b-tab>
           <b-tab title="Helipad Two">
           
