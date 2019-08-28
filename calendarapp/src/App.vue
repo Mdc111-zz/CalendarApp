@@ -32,7 +32,66 @@
         </b-tabs>
       </b-tab>
       <b-tab title="Day">
-        
+        <FullCalendar
+        class='demo-app-day-calendar'
+        ref="fullCalendar"
+        defaultView="timeGridDay"
+        :header="{
+          left: 'prev,next, today',
+          center: 'title',
+          right: 'timeGridDay'
+        }"
+        :customButtons="{}"
+        :plugins="calendarPlugins"
+        :events="calendarEvents"
+        :editable="true"
+        @dateClick="handleDateClick"
+        />
+        <FullCalendar
+        class='demo-app-day-calendar'
+        ref="fullCalendar"
+        defaultView="timeGridDay"
+        :header="{
+          left: 'prev,next, today',
+          center: 'title',
+          right: 'timeGridDay'
+        }"
+        :customButtons="{}"
+        :plugins="calendarPlugins"
+        :events="calendarEvents"
+        :editable="true"
+        @dateClick="handleDateClick"
+        />
+        <FullCalendar
+        class='demo-app-day-calendar'
+        ref="fullCalendar"
+        defaultView="timeGridDay"
+        :header="{
+          left: 'prev,next, today',
+          center: 'title',
+          right: 'timeGridDay'
+        }"
+        :customButtons="{}"
+        :plugins="calendarPlugins"
+        :events="calendarEvents"
+        :editable="true"
+        @dateClick="handleDateClick"
+        />
+        <FullCalendar
+        class='demo-app-day-calendar'
+        ref="fullCalendar"
+        defaultView="timeGridDay"
+        :header="{
+          left: 'prev,next, today',
+          center: 'title',
+          right: 'timeGridDay'
+        }"
+        :customButtons="{}"
+        :plugins="calendarPlugins"
+        :events="calendarEvents"
+        :editable="true"
+        @dateClick="handleDateClick"
+        />
       </b-tab>
     </b-tabs>
   </div>
@@ -99,7 +158,8 @@ export default {
   max-width: 900px;
 }
 .demo-app-day-calendar{
-  margin: 0 auto;
-  max-width: 200px;
+  float: left;
+  width: 25%;
+  padding: 5px;
 }
 </style>
