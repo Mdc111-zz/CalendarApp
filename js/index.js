@@ -22,37 +22,32 @@ $(document).ready(function() {
         defaultView: 'multiColAgendaDay',
         defaultDate: '2015-02-12',
         editable: true,
-        events: [
-            {
-                title: 'Meeting 1',
-                start: '2015-02-12T10:30:00',
-                end: '2015-02-12T12:30:00',
-                column: 0,
-                description: "description 1"
-            },
-            {
-                title: 'Meeting 2',
-                start: '2015-02-12T10:30:00',
-                end: '2015-02-12T12:30:00',
-                column: 1,
-                description: "description 2"
-            }
-        ],
-        eventClick: function(callEvent, jsEvent, view){
+        events: eventArr1,
+        eventClick: function(info){
             alert("event clicked");
-            
         },
-        dayClick: function(callEvent, jsEvent, view){
-            alert("time clicked");
+        dayClick: function(date, jsEvent, view){
+            if(document.getElementById("myForm").style.display != "block")
+                openForm();
+
+            var dateAndTimeArray = date.format().toString().split("T");
+            var dateClicked = dateAndTimeArray[0];
+            var timeClicked = dateAndTimeArray[1];
+
+            $("input[name=scheduledate]").val(dateClicked);
+            $("input[name=starttime]").val(timeClicked);
+            $("input[name=helipadnumber]").val("testvalue4");
         },
     });
 });
 
 function toggleForm() {
-    if(document.getElementById("myForm").style.display == "block")
-        closeForm();
-    else
-        openForm();
+    $("#calendar").fullCalendar('removeEvents');
+    $("#calendar").fullCalendar('addEventSource', eventArr2);
+    //if(document.getElementById("myForm").style.display == "block")
+    //    closeForm();
+    //else
+   //    openForm();
   }
   
 function closeForm() {
@@ -64,10 +59,14 @@ function openForm() {
 }
 
 function handleDynamicSchedule(){
-    var startDate = prompt('Enter a date in YYYY-MM-DD format');
-    var endDate = prompt('Enter a date in YYYY-MM-DD format');
-    var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-    var date = moment(dateStr);
+    var title = $("input[name=title]").val();
+    var dateOfSchedule = $("input[name=scheduledate]").val();
+    var startTime = $("input[name=starttime]").val();
+    var endTime = $("input[name=endtime]").val();
+    var helipadNumber = $("input[name=helipadnumber]").val();
+    var description = $("input[name=description]").val();
+
+    var date = moment(dateOfSchedule);
 
     //if (date.isValid()) {
         $('#calendar').fullCalendar('renderEvent', {
@@ -82,3 +81,30 @@ function handleDynamicSchedule(){
     //    alert('Invalid date.');
     //}
 }
+
+var eventArr1 = [
+    {
+        title: 'Meeting 1',
+        start: '2015-02-12T10:30:00',
+        end: '2015-02-12T12:30:00',
+        column: 0,
+        description: "description 1"
+    },
+    {
+        title: 'Meeting 2',
+        start: '2015-02-12T10:30:00',
+        end: '2015-02-12T12:30:00',
+        column: 1,
+        description: "description 2"
+    }
+];
+
+var eventArr2 = [
+    {
+        title: 'Meeting 2',
+        start: '2015-02-11T10:30:00',
+        end: '2015-02-11T12:30:00',
+        column: 1,
+        description: "description 2"
+    }
+];
