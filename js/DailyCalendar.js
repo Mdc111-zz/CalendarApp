@@ -1,9 +1,10 @@
 $(document).ready(function() {
-    $('#calendar').fullCalendar({
+    document.getElementById("weekview").style.display = "none";
+    $('#dayviewcalendar').fullCalendar({
         header: {
-            left: 'prev,next today, addEventButton',
+            left: 'prev,next today',
             center: 'title',
-            right: 'multiColAgendaDay,multiColAgendaWeek'
+            right: 'multiColAgendaDay'
         },
         views: {
             multiColAgendaDay: {
@@ -11,11 +12,6 @@ $(document).ready(function() {
                 duration: { days: 1 },
                 numColumns: 4,
                 columnHeaders: ['Helipad One', 'Helipad Two', 'Helipad Three', 'Helipad Four']
-            },
-            multiColAgendaWeek: {
-                type: 'multiColAgenda',
-                duration: { weeks: 1 },
-                numColumns: 1,
             }
         },
         allDaySlot: false,
@@ -42,12 +38,12 @@ $(document).ready(function() {
 });
 
 function toggleForm() {
-    $("#calendar").fullCalendar('removeEvents');
-    $("#calendar").fullCalendar('addEventSource', eventArr2);
-    //if(document.getElementById("myForm").style.display == "block")
-    //    closeForm();
-    //else
-   //    openForm();
+    //$("#dayviewcalendar").fullCalendar('removeEvents');
+    //$("#dayviewcalendar").fullCalendar('addEventSource', eventArr2);
+    if(document.getElementById("myForm").style.display == "block")
+        closeForm();
+    else
+        openForm();
   }
   
 function closeForm() {
@@ -69,7 +65,7 @@ function handleDynamicSchedule(){
     var date = moment(dateOfSchedule);
 
     //if (date.isValid()) {
-        $('#calendar').fullCalendar('renderEvent', {
+        $('#dayviewcalendar').fullCalendar('renderEvent', {
             title: 'Meeting 2',
             start: '2015-02-12T10:30:00',
             end: '2015-02-12T12:30:00',
@@ -81,6 +77,29 @@ function handleDynamicSchedule(){
     //    alert('Invalid date.');
     //}
 }
+
+//$(window).click(function(event) {
+//    if (!event.target.matches('.dropbtn')) {
+//        document.getElementsByClassName(".dropbtn").style.display = "none";
+//    }
+//});
+
+function showHelipadDropdown(){
+    document.getElementById("myDropdown").style.display = "block";
+}
+
+function toggleDisplay() {
+    if(document.getElementById("myDropdown").style.display == "block")
+      document.getElementById("myDropdown").style.display = "none";
+    else
+      document.getElementById("myDropdown").style.display = "block";
+}
+  
+function updateCurrentHelipadText(currentlySelectedItem){
+    document.getElementById("testid").innerHTML = currentlySelectedItem;
+}
+
+
 
 var eventArr1 = [
     {
