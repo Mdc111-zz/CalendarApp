@@ -1,3 +1,6 @@
+/*
+    PAGE CSS
+*/
 body {
     margin: 10px;
     padding: 0;
@@ -10,35 +13,21 @@ body {
 #weekviewcalendar {
   max-width: 900px;
 }
-
 .page-size{
     max-width: 940px;
 }
 
+/*
+    EVENT BUTTON CSS
+*/
 .open-button {
   color: black;
   border: 1px solid;
   cursor: pointer;
-  position: fixed;
+  position: absolute;
   width: 100px;
   height: 2.1em;
   left: 180px;
-  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
-  background-repeat: repeat-x;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  font-size: 1em; 
-  border-radius: 4px;
-}
-
-.open-button2 {
-  color: black;
-  border: 1px solid;
-  cursor: pointer;
-  position: fixed;
-  width: 100px;
-  height: 2.1em;
-  left: 710px;
   background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
   background-repeat: repeat-x;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
@@ -57,7 +46,9 @@ body {
 	     -o-transition: background-position 0.1s linear;
 	        transition: background-position 0.1s linear;
 }
-
+/*
+    EVENT FORM CSS
+*/
 .form-popup {
   display: none;
   position: absolute;
@@ -104,6 +95,36 @@ body {
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+
+/*
+    TAB CSS
+*/
+
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 15%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+.tabcontent {
+  padding: 70px 20px;
+  height: 100%;
+  width: 50%;
+}
+
+/*
+    DROP DOWN CSS
+*/
 
 .dropbtn {
   background-color: #3498DB;
@@ -160,33 +181,3 @@ body {
   background-color: #ddd;
 }
 
-.tablink {
-  background-color: #555;
-  color: white;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  font-size: 17px;
-  width: 15%;
-}
-
-.tablink:hover {
-  background-color: #777;
-}
-
-.tabcontent {
-  padding: 70px 20px;
-  height: 100%;
-  width: 50%;
-}
-
-div.arrow {
-  vertical-align: middle;
-  width: 7px;
-  height: 21px;
-  background: url(../images/sprites.png) -484px -24px no-repeat;
-  display: inline-block;
-  padding-top: 5px;
-}
