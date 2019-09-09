@@ -13,6 +13,9 @@
 <script src='./js/TabChanger.js'></script>
 <script src='./js/EventForm.js'></script>
 <script src='./js/EventData.js'></script>
+<script src='./js/DayClickEvents.js'></script>
+<script src='./js/EventClickEvents.js'></script>
+<script src='./js/WindowEvents.js'></script>
 </head>
 <body>
 	<button class="tablink" onclick="openPage('dayview')" id="defaultOpen">Day View</button>
@@ -27,6 +30,7 @@
 
 	<div id="weekview" class="tabcontent">
 		<button class="open-button" onclick="toggleForm()">Create Event</button>
+		<button id="dropbtn" class="dropbtn" onclick="toggleHelipadDropDown()">Select Helipad</button>
 		<div id="weekviewcalendar"></div>
 	</div>
 
@@ -54,6 +58,13 @@
 			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
 			<button type="reset" class="btn">Reset form</button>
 		</form>
+	</div>
+
+	<div id="myDropdown" class="dropdown-content">
+		<button onclick="updateSelectedHelipad('Helipad 1')">Helipad 1</button>
+		<button onclick="updateSelectedHelipad('Helipad 2')">Helipad 2</button>
+		<button onclick="updateSelectedHelipad('Helipad 3')">Helipad 3</button>
+		<button onclick="updateSelectedHelipad('Helipad 4')">Helipad 4</button>
 	</div>
 </body>
 </html>
