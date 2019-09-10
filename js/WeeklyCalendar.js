@@ -8,19 +8,15 @@ $(document).ready(function() {
         allDaySlot: false,
         defaultView: 'agendaWeek',
         editable: true,
-        events: eventArr1,
+        events: [],
         eventClick: function(info){
-            alert("event clicked");
+            handleEventClickEvent(info);
         },
         dayClick: function(date, jsEvent, view){
             handleDayClickEvent(date);
         }
     });
 });
-
-function showHelipadDropdown(){
-    document.getElementById("myDropdown").style.display = "block";
-}
 
 function toggleHelipadDropDown() {
     if(isHelipadDropDownOpen())
@@ -43,8 +39,5 @@ function closeHelipadDropDown(){
 
 function updateSelectedHelipad(helipadNumber){
     document.getElementById("dropbtn").innerHTML = helipadNumber;
-}
-
-function wasDropDownClicked(){
-    return (!event.target.matches('.myDropdown') && !event.target.matches('.dropbtn'));
+    var currentlySelectedHelipad = document.getElementById("dropbtn").innerHTML;
 }
