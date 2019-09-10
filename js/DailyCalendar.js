@@ -16,13 +16,19 @@ $(document).ready(function() {
         },
         allDaySlot: false,
         defaultView: 'multiColAgendaDay',
-        editable: true,
-        events: eventArr1,
+        eventDurationEditable: true,
+        events: dayEventData,
+        eventResize: function(event, delta, revertFunc, jsEvent, ui, view){
+            console.log("event resize hit");
+            console.log(delta);
+            //console.log(delta._data.minutes);
+            //console.log(delta._data.hours);
+        },
         eventClick: function(info){
-            alert("event clicked");
+            handleEventClickEvent(info);
         },
         dayClick: function(date, jsEvent, view){
             handleDayClickEvent(date);
-        },
+        }
     });
 });
