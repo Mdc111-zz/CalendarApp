@@ -9,6 +9,9 @@ $(document).ready(function() {
         defaultView: 'agendaWeek',
         editable: true,
         events: [],
+        eventOverlap: function(stillEvent, movingEvent) {
+            return false;
+        },
         eventClick: function(info){
             handleEventClickEvent(info);
         },
