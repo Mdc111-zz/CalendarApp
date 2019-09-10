@@ -16,13 +16,14 @@ $(document).ready(function() {
         },
         allDaySlot: false,
         defaultView: 'multiColAgendaDay',
-        eventDurationEditable: true,
+        editable: true,
         events: dayEventData,
         eventResize: function(event, delta, revertFunc, jsEvent, ui, view){
-            console.log("event resize hit");
+            handleResizeEvent(event, data);
+        },
+        eventDrop: function(event, delta, revertFunc, jsEvent, ui, view){
             console.log(delta);
-            //console.log(delta._data.minutes);
-            //console.log(delta._data.hours);
+            console.log(event);
         },
         eventClick: function(info){
             handleEventClickEvent(info);
@@ -32,3 +33,4 @@ $(document).ready(function() {
         }
     });
 });
+
