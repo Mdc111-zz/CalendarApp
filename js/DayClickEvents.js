@@ -1,6 +1,6 @@
 function handleDayClickEvent(date){
     if(document.getElementById("myForm").style.display != "block")
-    openForm();
+        openForm();
 
     var dateAndTimeArray = date.format().toString().split("T");
     var dateClicked = dateAndTimeArray[0];
