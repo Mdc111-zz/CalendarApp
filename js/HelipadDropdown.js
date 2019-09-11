@@ -42,3 +42,9 @@ function updateSelectedHelipad(helipadNumber){
         $("#weekviewcalendar").fullCalendar('addEventSource', weekEventDataHelipad4);
     }
 }
+
+function GetHelipadNumberFromDropDown(){
+  let helipadText = document.getElementById("dropbtn").innerHTML;
+  let helipadNumberAsText = helipadText.substring(helipadText.indexOf(" ") + 1);
+  return parseInt(helipadNumberAsText);
+}
