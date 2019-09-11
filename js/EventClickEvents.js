@@ -30,15 +30,13 @@ function updateEvent(){
     let helipadFromInput = $("#myForm2 input[name=helipadnumber]").val() - 1;
 
     if(helipadFromOurData != helipadFromInput){
-        console.log("hits not same helipad");
-
-        removeElementFromArrayById(dayEventData, eventId);
+        dayEventData = removeElementFromArrayById(dayEventData, eventId);
         let newDayEventData = {
             id: eventFromOurData.id,
             title: $("#myForm2 input[name=title]").val(),
             start: $("#myForm2 input[name=scheduledate]").val() + "T" + $("#myForm2 input[name=starttime]").val(),
             end: $("#myForm2 input[name=scheduledate]").val() + "T" + $("#myForm2 input[name=endtime]").val(),
-            helipadnumber: helipadFromInput,
+            column: helipadFromInput,
             description: $("#myForm2 input[name=description]").val()
         }
         dayEventData.push(newDayEventData);
@@ -63,7 +61,6 @@ function updateEvent(){
             end: $("#myForm2 input[name=scheduledate]").val() + "T" + $("#myForm2 input[name=endtime]").val(),
             description: $("#myForm2 input[name=description]").val()
         }
-        console.log(helipadFromInput);
         if(helipadFromInput == 0){
             weekEventDataHelipad1.push(weekEvent);
         }
@@ -100,9 +97,6 @@ function updateEvent(){
           $("#weekviewcalendar").fullCalendar('addEventSource', weekEventDataHelipad4);
         }
         //turn into function called rerender current view
-        console.log(weekEventDataHelipad1);
-        console.log(weekEventDataHelipad2);
-
         return;
     }
 
