@@ -19,11 +19,18 @@ $(document).ready(function() {
         editable: true,
         events: dayEventData,
         eventResize: function(event, delta, revertFunc, jsEvent, ui, view){
-            handleResizeEvent(event, data);
+            if(confirm("Are you sure you want to resize this event ?")){
+                handleResizeEvent(event.id, delta._data.hours, delta._data.minutes);
+            }else{
+                revertFunc();
+            }
         },
         eventDrop: function(event, delta, revertFunc, jsEvent, ui, view){
-            console.log(delta);
-            console.log(event);
+            if(confirm("Are you sure you want to move this event ?")){
+                handleDroppedEvent(event.id, delta._data.days, delta._data.hours, delta._data.minutes, (event.column+1));
+            }else{
+                revertFunc();
+            }
         },
         eventClick: function(info){
             handleEventClickEvent(info);
@@ -33,4 +40,3 @@ $(document).ready(function() {
         }
     });
 });
-
