@@ -32,8 +32,8 @@ $(document).ready(function() {
                 revertFunc();
             }
         },
-        eventClick: function(info){
-            handleEventClickEvent(info);
+        eventClick: function(event, jsEvent, view){
+            handleEventClickEvent(event);
         },
         dayClick: function(date, jsEvent, view){
             handleDayClickEvent(date);
