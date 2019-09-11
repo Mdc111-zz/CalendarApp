@@ -22,7 +22,7 @@ function handleDynamicSchedule(){
     var description = $("input[name=description]").val();
 
     var dayEvent = {
-        id: generateEventId,
+        id: generateEventId(),
         title: title,
         start: dateOfSchedule + "T" + startTime,
         end: dateOfSchedule + "T" + endTime,
@@ -31,7 +31,7 @@ function handleDynamicSchedule(){
     };
 
     var weekEvent = {
-        id: generateEventId,
+        id: generateEventId(),
         title: title,
         start: dateOfSchedule + "T" + startTime,
         end: dateOfSchedule + "T" + endTime,
