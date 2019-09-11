@@ -31,21 +31,19 @@ function updateEvent(){
 
     if(helipadFromOurData != helipadFromInput){
         console.log("hits not same helipad");
-        //seems this works test more after done with problems
-        dayEventData[indexOfDayEventInArray].column = helipadFromInput;
-        //if the above does not work try this
-        //removeElementFromArrayById(dayEventData, eventId);
-        //let newDayEventData = {
-        //    id: eventFromOurData.id,
-        //    title: eventFromOurData.title,
-        //    start: eventFromOurData.start,
-        //    end: eventFromOurData.end,
-        //    column: helipadFromInput,
-        //    description: eventFromOurData.description
-        //}
-        //dayEventData.push(newDayEventData);
-        //$("#dayviewcalendar").fullCalendar('removeEvents');
-        //$("#dayviewcalendar").fullCalendar('addEventSource', dayEventData);
+
+        removeElementFromArrayById(dayEventData, eventId);
+        let newDayEventData = {
+            id: eventFromOurData.id,
+            title: $("#myForm2 input[name=title]").val(),
+            start: $("#myForm2 input[name=scheduledate]").val() + "T" + $("#myForm2 input[name=starttime]").val(),
+            end: $("#myForm2 input[name=scheduledate]").val() + "T" + $("#myForm2 input[name=endtime]").val(),
+            helipadnumber: helipadFromInput,
+            description: $("#myForm2 input[name=description]").val()
+        }
+        dayEventData.push(newDayEventData);
+        $("#dayviewcalendar").fullCalendar('removeEvents');
+        $("#dayviewcalendar").fullCalendar('addEventSource', dayEventData);
         
         if(helipadFromOurData == 0){
             weekEventDataHelipad1 = removeElementFromArrayById(weekEventDataHelipad1, eventId);
