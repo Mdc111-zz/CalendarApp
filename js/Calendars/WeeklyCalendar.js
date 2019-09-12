@@ -27,7 +27,6 @@ $(document).ready(function() {
             }
         },
         eventClick: function(event, jsEvent, view){
-            console.log(event.id);
             handleEventClickEvent(event);
         },
         dayClick: function(date, jsEvent, view){
