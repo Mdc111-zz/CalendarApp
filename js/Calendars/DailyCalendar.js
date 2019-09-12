@@ -17,7 +17,7 @@ $(document).ready(function() {
         allDaySlot: false,
         defaultView: 'multiColAgendaDay',
         editable: true,
-        events: dayEventData,
+        events: eventData,
         eventResize: function(event, delta, revertFunc, jsEvent, ui, view){
             if(confirm("Are you sure you want to resize this event ?")){
                 handleResizeEvent(event.id, delta._data.hours, delta._data.minutes);
