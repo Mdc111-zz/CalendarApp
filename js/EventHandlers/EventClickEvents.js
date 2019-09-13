@@ -1,11 +1,11 @@
 var eventId;
 
-function handleEventClickEvent(event){
+function handleEventClickEvent(clickedEventId){
     if(document.getElementById("myForm2").style.display != "block")
         openForm2();
 
-    eventId = event.id;
-    var indexOfEventInArray = eventData.findIndex(x => x.id == event.id);
+    eventId = clickedEventId;
+    var indexOfEventInArray = eventData.findIndex(x => x.id == eventId);
     var eventFromOurData = eventData[indexOfEventInArray];
 
     let date = eventFromOurData.start.substring(0, eventFromOurData.start.indexOf("T"));
@@ -32,13 +32,8 @@ function updateEvent(){
         description: $("#myForm2 input[name=description]").val()
     });
 
-    if(currentOpen == "dayview"){
-        $("#dayviewcalendar").fullCalendar('removeEvents');
-        $("#dayviewcalendar").fullCalendar('addEventSource', eventData);
-    }else if(currentOpen == "weekview"){
-        $("#weekviewcalendar").fullCalendar('removeEvents');
-        $("#weekviewcalendar").fullCalendar('addEventSource', filterArrayByHelipad(eventData, GetHelipadNumberFromDropDown() - 1));
-    }
+    let dataToRender = currentOpen == "#dayviewcalendar" ? eventData : filterArrayByHelipad(eventData, GetHelipadNumberFromDropDown() - 1);
+    renderCalendarData(currentOpen, dataToRender);
 }
 
 
@@ -46,13 +41,8 @@ function deleteEvent(){
     let helipadNumber = eventData[eventData.findIndex(x => x.id == eventId)].column;
     eventData = removeElementFromArrayById(eventData, eventId);
 
-    if(currentOpen == "dayview"){
-        $("#dayviewcalendar").fullCalendar('removeEvents');
-        $("#dayviewcalendar").fullCalendar('addEventSource', eventData);
-    }else{
-        $("#weekviewcalendar").fullCalendar('removeEvents');
-        $("#weekviewcalendar").fullCalendar('addEventSource', filterArrayByHelipad(eventData, helipadNumber));
-    }
+    let dataToRender = currentOpen == "#dayviewcalendar" ? eventData : filterArrayByHelipad(eventData, helipadNumber);
+    renderCalendarData(currentOpen, dataToRender);
 
     closeForm2();
 }
