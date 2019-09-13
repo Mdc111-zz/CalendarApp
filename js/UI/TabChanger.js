@@ -1,4 +1,4 @@
-var currentOpen = "dayview";
+var currentOpen = "#dayviewcalendar";
 
 function toggleTab(elementId) {
     document.getElementById("myForm").style.display = "none";
@@ -6,34 +6,26 @@ function toggleTab(elementId) {
     if(elementId === currentOpen){
       return;
     }
-
-    if(elementId == "dayview"){
-      changeToDayView(elementId);
+    currentOpen = elementId;
+    if(elementId == "#dayviewcalendar"){
+      changeToDayView();
     }else{
-      changeToWeekView(elementId);
+      changeToWeekView();
     }
 }
 
-function changeToDayView(elementId){
-  currentOpen = "dayview";
-  $("#dayviewcalendar").fullCalendar('removeEvents');
-  $("#dayviewcalendar").fullCalendar('addEventSource', eventData);
-  document.getElementById(elementId).style.display = "block";
+function changeToDayView(){
+  renderCalendarData(currentOpen, eventData);
+  document.getElementById("dayview").style.display = "block";
   document.getElementById("weekview").style.display = "none";
 }
 
-function changeToWeekView(elementId){
-  currentOpen = "weekview"
+function changeToWeekView(){
   let currentlySelectedHelipad = GetHelipadNumberFromDropDown() - 1;
 
-  if(currentlySelectedHelipad == "Select Helipad"){
-    $("#weekviewcalendar").fullCalendar('removeEvents');
-    $("#weekviewcalendar").fullCalendar('addEventSource', []);
-  }
-  else{
-    $("#weekviewcalendar").fullCalendar('removeEvents');
-    $("#weekviewcalendar").fullCalendar('addEventSource', filterArrayByHelipad(eventData, currentlySelectedHelipad));
-  }
-  document.getElementById(elementId).style.display = "block";
+  let dataToRender = currentlySelectedHelipad == 5 ? [] : filterArrayByHelipad(eventData, currentlySelectedHelipad);
+  renderCalendarData(currentOpen, dataToRender);
+
+  document.getElementById("weekview").style.display = "block";
   document.getElementById("dayview").style.display = "none";
 }
