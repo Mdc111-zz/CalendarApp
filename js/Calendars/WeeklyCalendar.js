@@ -14,20 +14,20 @@ $(document).ready(function() {
         },
         eventResize: function(event, delta, revertFunc, jsEvent, ui, view){
             if(confirm("Are you sure you want to resize this event ?")){
-                handleResizeEvent(event.id, delta._data.hours, delta._data.minutes, GetHelipadNumberFromDropDown());
+                handleResizeEvent(event.id, delta._data.hours, delta._data.minutes);
             }else{
                 revertFunc();
             }
         },
         eventDrop: function(event, delta, revertFunc, jsEvent, ui, view){
             if(confirm("Are you sure you want to move this event ?")){
-                handleDroppedEvent(event.id, delta._data.days, delta._data.hours, delta._data.minutes, GetHelipadNumberFromDropDown());
+                handleDroppedEvent(event.id, delta._data.days, delta._data.hours, delta._data.minutes);
             }else{
                 revertFunc();
             }
         },
         eventClick: function(event, jsEvent, view){
-            handleEventClickEvent(event);
+            handleEventClickEvent(event.id);
         },
         dayClick: function(date, jsEvent, view){
             handleDayClickEvent(date);

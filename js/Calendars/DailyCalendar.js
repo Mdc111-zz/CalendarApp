@@ -33,7 +33,7 @@ $(document).ready(function() {
             }
         },
         eventClick: function(event, jsEvent, view){
-            handleEventClickEvent(event);
+            handleEventClickEvent(event.id);
         },
         dayClick: function(date, jsEvent, view){
             handleDayClickEvent(date);
