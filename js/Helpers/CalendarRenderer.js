@@ -1,4 +1,8 @@
 function renderCalendarData(calendarType, data){
-    $(calendarType).fullCalendar('removeEvents');
+    clearCalendarData(calendarType);
     $(calendarType).fullCalendar('addEventSource', data);
+}
+
+function clearCalendarData(calendarType){
+    $(calendarType).fullCalendar('removeEvents');
 }
