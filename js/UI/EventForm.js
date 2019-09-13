@@ -1,10 +1,14 @@
 function toggleForm() {
-    if(document.getElementById("myForm").style.display == "block")
+    if(isFormOpen())
         closeForm();
     else
         openForm();
   }
   
+function isFormOpen(){
+    return document.getElementById("myForm").style.display == "block";
+}
+
 function closeForm() {
     document.getElementById("myForm").style.display = "none";
 }
@@ -14,39 +18,17 @@ function openForm() {
 }
 
 function handleDynamicSchedule(){
-    var title = $("input[name=title]").val();
-    var dateOfSchedule = $("input[name=scheduledate]").val();
-    var startTime = $("input[name=starttime]").val();
-    var endTime = $("input[name=endtime]").val();
-    var helipadNumber = parseInt($("input[name=helipadnumber]").val());
-    var description = $("input[name=description]").val();
-
-    var dayEvent = {
+    eventData.push({
         id: generateEventId(),
-        title: title,
-        start: dateOfSchedule + "T" + startTime,
-        end: dateOfSchedule + "T" + endTime,
-        column: (helipadNumber - 1),
-        description: description
-    };
+        title: $("input[name=title]").val(),
+        start: $("input[name=scheduledate]").val() + "T" + $("input[name=starttime]").val(),
+        end: $("input[name=scheduledate]").val() + "T" + $("input[name=endtime]").val(),
+        column: (parseInt($("input[name=helipadnumber]").val()) - 1),
+        description: $("input[name=description]").val()
+    });
+    let dataToRender = currentOpen == "#dayviewcalendar" ? eventData : currentlySelectedHelipad == 5 ? [] : filterArrayByHelipad(eventData, currentlySelectedHelipad);
+    renderCalendarData(currentOpen, dataToRender);
 
-    eventData.push(dayEvent)
-
-    if(currentOpen == "dayview"){
-        $("#dayviewcalendar").fullCalendar('removeEvents');
-        $("#dayviewcalendar").fullCalendar('addEventSource', eventData);
-    }else if(currentOpen == "weekview"){
-        let currentlySelectedHelipad = GetHelipadNumberFromDropDown() - 1;
-
-        if(currentlySelectedHelipad == "Select Helipad"){
-          $("#weekviewcalendar").fullCalendar('removeEvents');
-          $("#weekviewcalendar").fullCalendar('addEventSource', []);
-        }
-        else{
-          $("#weekviewcalendar").fullCalendar('removeEvents');
-          $("#weekviewcalendar").fullCalendar('addEventSource', filterArrayByHelipad(eventData, currentlySelectedHelipad));
-        }
-    }
     closeForm();
     clearForm();
 }
