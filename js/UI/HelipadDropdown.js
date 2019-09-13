@@ -6,7 +6,7 @@ function toggleHelipadDropDown() {
 }
 
 function isHelipadDropDownOpen(){
-    return document.getElementById("myDropdown").style.display == "block"
+    return document.getElementById("myDropdown").style.display == "block";
 }
 
 function openHelipadDropDown(){
@@ -20,19 +20,17 @@ function closeHelipadDropDown(){
 function updateSelectedHelipad(helipadNumber){
     document.getElementById("dropbtn").innerHTML = helipadNumber;
     let currentlySelectedHelipad = GetHelipadNumberFromDropDown() - 1;
-
-    if(currentlySelectedHelipad == "Select Helipad"){
-      $("#weekviewcalendar").fullCalendar('removeEvents');
-      $("#weekviewcalendar").fullCalendar('addEventSource', []);
-    }
-    else{
-      $("#weekviewcalendar").fullCalendar('removeEvents');
-      $("#weekviewcalendar").fullCalendar('addEventSource', filterArrayByHelipad(eventData, currentlySelectedHelipad));
-    }
+  
+    let dataToRender = currentlySelectedHelipad == 5 ? [] : filterArrayByHelipad(eventData, currentlySelectedHelipad);
+    renderCalendarData(currentOpen, dataToRender);
 }
 
 function GetHelipadNumberFromDropDown(){
   let helipadText = document.getElementById("dropbtn").innerHTML;
+  if(helipadText == "Select Helipad")
+    return 5;
+  
+    
   let helipadNumberAsText = helipadText.substring(helipadText.indexOf(" ") + 1);
   return parseInt(helipadNumberAsText);
 }
