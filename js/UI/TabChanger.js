@@ -2,7 +2,6 @@ var currentOpen = "#dayviewcalendar";
 
 function toggleTab(elementId) {
     document.getElementById("myForm").style.display = "none";
-    document.getElementById("myForm2").style.display = "none";
     if(elementId === currentOpen){
       return;
     }
