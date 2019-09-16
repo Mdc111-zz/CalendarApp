@@ -2,5 +2,5 @@ function handleDroppedEvent(eventId, daysAdjustedBy, hoursAdjustedBy, minutesAdj
     var indexOfEventInArray = eventData.findIndex(x => x.id == eventId);
     eventData[indexOfEventInArray].start = calculateAdjustedTime(eventData[indexOfEventInArray].start, daysAdjustedBy, hoursAdjustedBy, minutesAdjustedBy);
     eventData[indexOfEventInArray].end = calculateAdjustedTime(eventData[indexOfEventInArray].end, daysAdjustedBy, hoursAdjustedBy, minutesAdjustedBy);
-    eventData[indexOfEventInArray].column = helipadNumber - 1;
+    eventData[indexOfEventInArray].column = helipadNumber;
 }
