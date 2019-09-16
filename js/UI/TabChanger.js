@@ -15,16 +15,26 @@ function toggleTab(elementId) {
 }
 
 function changeToDayView(){
+  console.log(eventData);
   renderCalendarData(currentOpen, eventData);
+  $("#dayviewcalendar").fullCalendar( "rerenderEvents" );
   document.getElementById("dayview").style.display = "block";
   document.getElementById("weekview").style.display = "none";
 }
 
 function changeToWeekView(){
-  let currentlySelectedHelipad = GetHelipadNumberFromDropDown() - 1;
+  //let currentlySelectedHelipad = GetHelipadNumberFromDropDown() - 1;
 
-  let dataToRender = currentlySelectedHelipad == 5 ? [] : filterArrayByHelipad(eventData, currentlySelectedHelipad);
-  renderCalendarData(currentOpen, dataToRender);
+  //let dataToRender = currentlySelectedHelipad == 5 ? [] : filterArrayByHelipad(eventData, currentlySelectedHelipad);
+  //renderCalendarData(currentOpen, dataToRender);
+
+  document.getElementById("dropbtn").innerHTML = "Select Helipad";
+
+  //$("#weekviewcalendar").fullCalendar('removeEventSource', eventData )
+  //$(calendarType).fullCalendar('removeEvents');
+  //$("#weekviewcalendar").fullCalendar('addEventSource', dataToRender);
+  $("#weekviewcalendar").fullCalendar('refetchEvents');
+
 
   document.getElementById("weekview").style.display = "block";
   document.getElementById("dayview").style.display = "none";
