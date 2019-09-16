@@ -38,6 +38,17 @@ $(document).ready(function() {
             }
         },
         eventDrop: function(event, delta, revertFunc, jsEvent, ui, view){
+            let indexOfEventInArray = eventData.findIndex(x => x.id == event.id);
+            let updatedEventStart = calculateAdjustedTime(eventData[indexOfEventInArray].start, delta._data.days, delta._data.hours, delta._data.minutes)
+            let updatedEventEnd = calculateAdjustedTime(eventData[indexOfEventInArray].end, delta._data.days, delta._data.hours, delta._data.minutes)
+            let eventsByHelipad = filterArrayByHelipad(eventData, (event.column));
+
+            if(DoTimesOverlap(event.id, updatedEventStart, updatedEventEnd, eventsByHelipad)){
+                alert("Events cannot overlap");
+                revertFunc();
+                return;
+            }
+
             if(confirm("Are you sure you want to move this event ?")){
                 handleDroppedEvent(event.id, delta._data.days, delta._data.hours, delta._data.minutes, (event.column));
             }else{
