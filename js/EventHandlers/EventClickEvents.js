@@ -1,8 +1,7 @@
 var eventId;
 
 function handleEventClickEvent(clickedEventId){
-    if(document.getElementById("myForm2").style.display != "block")
-        openForm2();
+    openForm("DescriptionForm");
 
     eventId = clickedEventId;
     var indexOfEventInArray = eventData.findIndex(x => x.id == eventId);
@@ -25,11 +24,11 @@ function updateEvent(){
 
     eventData.push({
         id: eventId,
-        title: $("#myForm2 input[name=title]").val(),
-        start: $("#myForm2 input[name=scheduledate]").val() + "T" + $("#myForm2 input[name=starttime]").val(),
-        end: $("#myForm2 input[name=scheduledate]").val() + "T" + $("#myForm2 input[name=endtime]").val(),
-        column: $("#myForm2 input[name=helipadnumber]").val() - 1,
-        description: $("#myForm2 input[name=description]").val()
+        title: $("input[name=title]").val(),
+        start: $("input[name=scheduledate]").val() + "T" + $("input[name=starttime]").val(),
+        end: $("input[name=scheduledate]").val() + "T" + $("input[name=endtime]").val(),
+        column: $("input[name=helipadnumber]").val() - 1,
+        description: $("input[name=description]").val()
     });
 
     let dataToRender = currentOpen == "#dayviewcalendar" ? eventData : filterArrayByHelipad(eventData, GetHelipadNumberFromDropDown() - 1);
@@ -45,12 +44,4 @@ function deleteEvent(){
     renderCalendarData(currentOpen, dataToRender);
 
     closeForm2();
-}
-
-function closeForm2(){
-    document.getElementById("myForm2").style.display = "none";
-}
-
-function openForm2(){
-    document.getElementById("myForm2").style.display = "block";
 }

@@ -2,7 +2,7 @@ function toggleForm() {
     if(isFormOpen())
         closeForm();
     else
-        openForm();
+        openForm("EventForm");
   }
   
 function isFormOpen(){
@@ -13,11 +13,18 @@ function closeForm() {
     document.getElementById("myForm").style.display = "none";
 }
 
-function openForm() {
+function openForm(formType) {
     document.getElementById("myForm").style.display = "block";
+
+    if(formType == "EventForm"){
+        openEventForm();
+    }else{
+        openDescriptionForm();
+    }
+    clearForm();
 }
 
-function handleDynamicSchedule(){
+function submitEvent(){
     eventData.push({
         id: generateEventId(),
         title: $("input[name=title]").val(),
@@ -31,6 +38,20 @@ function handleDynamicSchedule(){
 
     closeForm();
     clearForm();
+}
+
+function openEventForm(){
+    document.getElementById("updateEventBtn").style.display = "none";
+    document.getElementById("deleteEventBtn").style.display = "none";
+    document.getElementById("submitEventBtn").style.display = "block";
+    document.getElementById("resetFormBtn").style.display = "block";
+}
+
+function openDescriptionForm(){
+    document.getElementById("updateEventBtn").style.display = "block";
+    document.getElementById("deleteEventBtn").style.display = "block";
+    document.getElementById("submitEventBtn").style.display = "none";
+    document.getElementById("resetFormBtn").style.display = "none";
 }
 
 function clearForm(){

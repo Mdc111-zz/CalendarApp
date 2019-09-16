@@ -62,35 +62,11 @@
 			<label for="description"><b>Description</b></label>
 			<input type="text" placeholder="Enter description" name="description">
 		
-			<button type="button" class="btn" onclick="handleDynamicSchedule()">Submit Event</button>
+			<button id="updateEventBtn" type="button" class="btn" onclick="updateEvent()">Update Event</button>
+			<button id="deleteEventBtn" type="button" class="btn" onclick="deleteEvent()">Delete Event</button>
+			<button id="submitEventBtn" type="button" class="btn" onclick="submitEvent()">Submit Event</button>
 			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-			<button type="reset" class="btn">Reset form</button>
-		</form>
-	</div>
-
-	<div class="form-popup2" id="myForm2">
-		<form class="form-container2">
-			<label for="title"><b>Event Title</b></label>
-			<input type="text" placeholder="Enter title" name="title" required>
-		
-			<label for="scheduledate"><b>Date of Schedule</b></label>
-			<input type="text" placeholder="YYYY-MM-DD" name="scheduledate" required>
-			
-			<label for="starttime"><b>Start Time</b></label>
-			<input type="text" placeholder="HH:MM:SS" name="starttime" required>
-
-			<label for="endtime"><b>End Time</b></label>
-			<input type="text" placeholder="HH:MM:SS" name="endtime" required>
-			
-			<label for="helipadnumber"><b>Helipad Number</b></label>
-			<input type="text" placeholder="Enter helipad number" name="helipadnumber" required>
-			
-			<label for="description"><b>Description</b></label>
-			<input type="text" placeholder="Enter description" name="description">
-		
-			<button type="button" class="btn" onclick="updateEvent()">Update Event</button>
-			<button type="button" class="btn" onclick="deleteEvent()">Delete Event</button>
-			<button type="button" class="btn" onclick="closeForm2()">Close</button>
+			<button id="resetFormBtn" type="reset" class="btn">Reset form</button>
 		</form>
 	</div>
 
