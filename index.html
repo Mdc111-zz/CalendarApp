@@ -4,10 +4,10 @@
 <meta charset='utf-8' />
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.css' />
 <link rel='stylesheet' href='./Css/style.css' />
-<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js'></script>
-<script src='https://code.jquery.com/jquery-2.1.3.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.js'></script>
-<script src ='https://cdnjs.cloudflare.com/ajax/libs/moment-range/4.0.2/moment-range.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js'></script>
+<script src='./js/Libraries/momentrange/dist/moment-range.js'></script>
+<script src='./js/Libraries/jquery-3.4.1.js'></script>
+<script src='./js/Libraries/fullcalendar-2.3.1/fullcalendar.js'></script>
 <script src='./js/Libraries/fullcalendar-columns/fullcalendar-columns.js'></script>
 <script src='./js/Calendars/WeeklyCalendar.js'></script>
 <script src='./js/Calendars/DailyCalendar.js'></script>
@@ -23,8 +23,7 @@
 <script src='./js/UI/EventForm.js'></script>
 <script src='./js/UI/HelipadDropdown.js'></script>
 <script src='./js/UI/TabChanger.js'></script>
-<script src='./js/Validation/EventDroppingValidation.js'></script>
-<script src='./js/Validation/EventResizingValidation.js'></script>
+<script src='./js/Validation/DurationValidator.js'></script>
 </head>
 <body>
 	<button class="tablink" onclick="toggleTab('#dayviewcalendar')" id="defaultOpen">Day View</button>
