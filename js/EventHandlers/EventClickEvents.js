@@ -1,4 +1,5 @@
 function handleEventClickEvent(clickedEventId){
+    document.getElementById("myForm").style.display = "block";
     openDescriptionForm(clickedEventId);
 
     var indexOfEventInArray = eventData.findIndex(x => x.id == clickedEventId);
