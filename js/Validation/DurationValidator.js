@@ -11,14 +11,13 @@ function DoTimesOverlap(eventId, startTime, endTime, eventsToCompareAgainst){
            
         let elementStartTimeAsMovement = moment(eventsToCompareAgainst[i].start);
         let elementEndTimeAsMovement = moment(eventsToCompareAgainst[i].end);
+        let isStartTimeInsideTimeRange = (startTimeAsMoment.isBefore(elementEndTimeAsMovement) && startTimeAsMoment.isAfter(elementStartTimeAsMovement));
+        let isEndTimeInsideTimeRange = (endTimeAsMoment.isBefore(elementEndTimeAsMovement) && endTimeAsMoment.isAfter(elementStartTimeAsMovement));
+        let isTimeSpanOverOtherEvent = (startTimeAsMoment.isBefore(elementStartTimeAsMovement) && endTimeAsMoment.isAfter(elementEndTimeAsMovement));
+        let isStartAndEndTheSame = (startTimeAsMoment.isSame(elementStartTimeAsMovement) && endTimeAsMoment.isSame(elementEndTimeAsMovement));
 
-        if((startTimeAsMoment.isBefore(elementEndTimeAsMovement) && startTimeAsMoment.isAfter(elementStartTimeAsMovement))
-            || (endTimeAsMoment.isBefore(elementEndTimeAsMovement) && endTimeAsMoment.isAfter(elementStartTimeAsMovement))
-            || (startTimeAsMoment.isBefore(elementStartTimeAsMovement) && endTimeAsMoment.isAfter(elementEndTimeAsMovement))
-            || (startTimeAsMoment.isSame(elementStartTimeAsMovement) && endTimeAsMoment.isSame(elementEndTimeAsMovement)))
-        {
+        if(isStartTimeInsideTimeRange || isEndTimeInsideTimeRange || isTimeSpanOverOtherEvent || isStartAndEndTheSame)
             return true;
-        }
     }
     return false;
 }
