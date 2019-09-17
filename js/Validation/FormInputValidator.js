@@ -1,20 +1,33 @@
-function validateFormInput(title, startTime, endTime, column){
+function validateFormInput(title, scheduledTime, startTime, endTime, column){
     let validationErrors = [];
+    let templateDate = "2019-09-03T";
+    let startDate = templateDate + startTime;
+    let endDate = templateDate + endTime;
 
     let titleErrors = validateTitle(title);
-    let timeErrors = validateEventTimes(startTime, endTime);
+    let scheduleTimeErrors = validateScheduledTime(scheduledTime);
+    let startTimeValidationResponse = validateStartTime(startDate);
+    let endTimeValidationResponse = validateEndTime(endDate);
+    let overlappingTimeErrors = validateTimesNotOverlapping(startTime, endTime);
     let columnErrors = validateColumn(column);
 
     if(titleErrors)
         validationErrors.push(titleErrors);
 
-    if(timeErrors.length != 0)
-        Array.prototype.push.apply(validationErrors, timeErrors);
+    if(scheduleTimeErrors)
+        validationErrors.push(scheduleTimeErrors);
+
+    if(startTimeValidationResponse)
+        validationErrors.push(startTimeValidationResponse);
+
+    if(endTimeValidationResponse)
+        validationErrors.push(endTimeValidationResponse);
+        
+    if(overlappingTimeErrors)
+        validationErrors.push(overlappingTimeErrors);
 
     if(columnErrors)
         validationErrors.push(columnErrors);
-
-    console.log(validationErrors);
 
     return validationErrors;
 }
@@ -25,23 +38,32 @@ function validateTitle(title){
     return "";
 }
 
-function validateEventTimes(startTime, endTime){
-    var timeErrors = [];
+function validateScheduledTime(scheduledTime){
+    if(!moment(scheduledTime).isValid())
+        return "scheduled date is an invalid date";
+    return "";
+}
 
-    if(moment(startTime).isAfter(endTime))
-        timeErrors.push("start time must be before end time");
-
+function validateStartTime(startTime){
     if(!moment(startTime).isValid())
-        timeErrors.push("start time is an invalid time")
+        return "start time is an invalid time";
+    return "";
+}
 
+function validateEndTime(endTime){
     if(!moment(endTime).isValid())
-        timeErrors.push("end time is an invalid time")
+        return "end time is an invalid time";
+    return "";
+}
 
-    return timeErrors;
+function validateTimesNotOverlapping(startTime, endTime){
+    if(moment(startTime).isAfter(endTime) || moment(startTime).isSame(endTime))
+        return "start time must be before end time";
+    return "";
 }
 
 function validateColumn(column){
-    if(column < 0 || column > 4)
+    if(column < 1 || column > 4)
         return "incorrect column input - input number from 1 to 4";
     return "";
 }
