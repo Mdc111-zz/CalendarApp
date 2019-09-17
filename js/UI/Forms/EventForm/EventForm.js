@@ -2,7 +2,7 @@ function toggleForm() {
     if(isFormOpen())
         closeForm();
     else
-        openEventForm();
+        openForm();
 } 
   
 function isFormOpen(){
@@ -13,19 +13,19 @@ function closeForm() {
     document.getElementById("myForm").style.display = "none";
 }
 
-function openEventForm() {
+function openForm() {
     document.getElementById("myForm").style.display = "block";
     openEventForm();
-    clearForm();
 }
 
 function submitEvent(){
     let title = $("input[name=title]").val();
-    let startTime = $("input[name=scheduledate]").val() + "T" + $("input[name=starttime]").val();
-    let endTime = $("input[name=scheduledate]").val() + "T" + $("input[name=endtime]").val();
-    let column = (parseInt($("input[name=helipadnumber]").val()) - 1);
+    let scheduledate = $("input[name=scheduledate]").val();
+    let startTime = $("input[name=starttime]").val();
+    let endTime = $("input[name=endtime]").val();
+    let column = parseInt($("input[name=helipadnumber]").val());
 
-    let validationErrors = validateFormInput(title, startTime, endTime, column);
+    let validationErrors = validateFormInput(title, scheduledate, startTime, endTime, column);
     if(validationErrors.length > 0){
         let errorMessage = "Some of the input on the form is incorrect: \n";
         for(var i = 0; i < validationErrors.length; i++){
@@ -38,9 +38,9 @@ function submitEvent(){
     eventData.push({
         id: generateEventId(),
         title: title,
-        start: startTime,
-        end: endTime,
-        column: column,
+        start: scheduledate + "T" + startTime,
+        end: scheduledate + "T" + endTime,
+        column: column - 1,
         description: $("input[name=description]").val()
     });
 
