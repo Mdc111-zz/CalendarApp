@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.1/fullcalendar.css' />
+<link rel='stylesheet' href='./Css/style.css' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js'></script>
+<script src='./js/Libraries/momentrange/dist/moment-range.js'></script>
+<script src='./js/Libraries/jquery-3.4.1.js'></script>
+<script src='./js/Libraries/fullcalendar-2.3.1/fullcalendar.js'></script>
+<script src='./js/Libraries/fullcalendar-columns/fullcalendar-columns.js'></script>
+<script src='./js/Calendars/WeeklyCalendar.js'></script>
+<script src='./js/Calendars/DailyCalendar.js'></script>
+<script src='./js/Data/EventData.js'></script>
+<script src='./js/EventHandlers/DayClickEvents.js'></script>
+<script src='./js/EventHandlers/EventClickEvents.js'></script>
+<script src='./js/EventHandlers/EventDrop.js'></script>
+<script src='./js/EventHandlers/EventResize.js'></script>
+<script src='./js/EventHandlers/WindowEvents.js'></script>
+<script src='./js/Helpers/DateFormatter.js'></script>
+<script src='./js/Helpers/ArrayFormatter.js'></script>
+<script src='./js/Helpers/CalendarRenderer.js'></script>
+<script src='./js/UI/Forms/Form.js'></script>
+<script src='./js/UI/Forms/EventForm/EventForm.js'></script>
+<script src='./js/UI/Forms/DescriptionForm/DescriptionForm.js'></script>
+<script src='./js/UI/HelipadDropdown.js'></script>
+<script src='./js/UI/TabChanger.js'></script>
+<script src='./js/Validation/DurationValidator.js'></script>
+<script src='./js/Validation/FormInputValidator.js'></script>
+</head>
+<body>
+	<button class="tablink" onclick="toggleTab('#dayviewcalendar')" id="defaultOpen">Day View</button>
+	<button class="tablink" onclick="toggleTab('#weekviewcalendar')">Week View</button>
+	<button class="tablink">Custom View</button>
+	<button class="tablink">Custom View</button>
+
+	<div id="dayview" class="tabcontent">
+		<button class="open-button" onclick="toggleForm()">Create Event</button>
+		<div id="dayviewcalendar"></div>
+	</div>
+
+	<div id="weekview" class="tabcontent">
+		<button class="open-button" onclick="toggleForm()">Create Event</button>
+		<button id="dropbtn" class="dropbtn" onclick="toggleHelipadDropDown()">Select Helipad</button>
+		<div id="weekviewcalendar"></div>
+	</div>
+
+	<div class="form-popup" id="myForm">
+		<form class="form-container">
+			<label for="title"><b>Event Title</b></label>
+			<input type="text" placeholder="Enter title" name="title" required>
+		
+			<label for="scheduledate"><b>Date of Schedule</b></label>
+			<input type="text" placeholder="YYYY-MM-DD" name="scheduledate" required>
+			
+			<label for="starttime"><b>Start Time</b></label>
+			<input type="text" placeholder="HH:MM:SS" name="starttime" required>
+
+			<label for="endtime"><b>End Time</b></label>
+			<input type="text" placeholder="HH:MM:SS" name="endtime" required>
+			
+			<label for="helipadnumber"><b>Helipad Number</b></label>
+			<input type="text" placeholder="Enter helipad number" name="helipadnumber" required>
+			
+			<label for="description"><b>Description</b></label>
+			<input type="text" placeholder="Enter description" name="description">
+		
+			<button id="updateEventBtn" type="button" class="btn" onclick="updateEvent()">Update Event</button>
+			<button id="deleteEventBtn" type="button" class="btn" onclick="deleteEvent()">Delete Event</button>
+			<button id="submitEventBtn" type="button" class="btn" onclick="submitEvent()">Submit Event</button>
+			<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+			<button id="resetFormBtn" type="reset" class="btn">Reset form</button>
+		</form>
+	</div>
+
+	<div id="myDropdown" class="dropdown-content">
+		<button onclick="updateSelectedHelipad('Helipad 1')">Helipad 1</button>
+		<button onclick="updateSelectedHelipad('Helipad 2')">Helipad 2</button>
+		<button onclick="updateSelectedHelipad('Helipad 3')">Helipad 3</button>
+		<button onclick="updateSelectedHelipad('Helipad 4')">Helipad 4</button>
+	</div>
+</body>
+</html>
