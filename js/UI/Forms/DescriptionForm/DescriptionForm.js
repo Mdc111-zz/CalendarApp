@@ -27,7 +27,7 @@ function updateEvent(){
         return;
     }
 
-    if(DoTimesOverlap(currentlySelectedEvent, startDate, endDate, filterArrayByHelipad(eventData, column))){
+    if(DoTimesOverlap(currentlySelectedEvent, startDate, endDate, filterArrayByHelipad(eventData, column-1))){
         alert("Events cannot overlap");
         return;
     }
